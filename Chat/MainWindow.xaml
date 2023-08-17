@@ -1,0 +1,23 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:local="clr-namespace:Chat"
+        xmlns:Collections="clr-namespace:System.Collections;assembly=System.Runtime" x:Class="Chat.MainWindow"
+        mc:Ignorable="d"
+        Title="Chat Room" Height="500" Width="800" MinWidth="680" MinHeight="350">
+    <Grid x:Name="bg">
+        <ListView x:Name="listView" Margin="0,0,160,0" Width="160" HorizontalAlignment="Left">
+            <ListView.View>
+                <GridView/>
+            </ListView.View>
+
+            <Button Content="按钮114514" Width="212" HorizontalAlignment="Center"/>
+            <Button Content="按钮10086"/>
+        </ListView>
+
+
+    </Grid>
+</Window>
