@@ -6,31 +6,43 @@
         xmlns:local="clr-namespace:Chat"
         xmlns:Collections="clr-namespace:System.Collections;assembly=System.Runtime" x:Class="Chat.MainWindow"
         mc:Ignorable="d"
-        Title="Chat Room" Height="500" Width="800" MinWidth="680" MinHeight="350">
+        Title="Chat Room" Height="500" Width="800" MinWidth="680" MinHeight="350" Icon="/icon.png">
     <Grid RenderTransformOrigin="0.5,0.5">
-        <Grid Height="60" VerticalAlignment="Top" Background="#FFED9090">
-            <TextBlock Margin="150,8,150,10" TextWrapping="Wrap" Text="睡不醒的夜." FontFamily="Cambria" FontSize="30" ScrollViewer.VerticalScrollBarVisibility="Disabled" TextAlignment="Center" VerticalAlignment="Center"/>
+        <Grid Height="40" VerticalAlignment="Top" Background="#FFED9090">
+            <TextBlock x:Name="title" Margin="150,8,150,10" TextWrapping="Wrap" FontFamily="Cambria" FontSize="20" ScrollViewer.VerticalScrollBarVisibility="Disabled" TextAlignment="Center" VerticalAlignment="Center"/>
         </Grid>
-        <Grid HorizontalAlignment="Left" Margin="0,60,0,0" Width="160">
-            <ListView x:Name="fl" Background="#FF7E7E7E">
-                <ListViewItem Padding="0">
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                        <Ellipse Cursor="Hand" Width="50" Height="50">
-                            <Ellipse.Fill>
-                                <ImageBrush  ImageSource="res/icon.png" />
-                            </Ellipse.Fill>
-                        </Ellipse>
-                        <StackPanel Orientation="Vertical" VerticalAlignment="Center" Margin="5 0">
-                            <TextBlock FontSize="15" Foreground="Black" Text="你没事吧" />
-                            <TextBlock  Margin="0 2 0 0" FontSize="12" Text="我说了个114514" />
+        <Grid HorizontalAlignment="Left" Margin="0,40,0,0" Width="160">
+            <ListView x:Name="fl" Background="#FF7E7E7E" ScrollViewer.VerticalScrollBarVisibility="Disabled" SelectionMode="Single">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal"
+                                        Height="50"
+                                        >
+                            <Ellipse Width="50"
+                                         Height="50">
+                                <Ellipse.Fill>
+                                    <ImageBrush  ImageSource="{Binding Head}" />
+                                </Ellipse.Fill>
+                            </Ellipse>
+                            <StackPanel
+                                    Orientation="Vertical"
+                                    VerticalAlignment="Center"
+                                    Margin="5 0">
+                                <TextBlock
+                                        FontSize="15"
+                                        Foreground="Black"
+                                        Text="{Binding Name}" />
+                                <TextBlock
+                                        Margin="0 2 0 0"
+                                        FontSize="12"
+                                        Text="114514" />
+                            </StackPanel>
                         </StackPanel>
-                    </StackPanel>
-                </ListViewItem>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
             </ListView>
         </Grid>
-        <Grid Margin="160,60,0,0">
-            <TextBlock x:Name="tb" HorizontalAlignment="Left" Height="45" Margin="163,167,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Width="157"/>
-        </Grid>
+        <Grid Margin="160,40,0,0"/>
 
 
 

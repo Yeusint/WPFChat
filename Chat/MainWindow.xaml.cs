@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,53 +23,71 @@ namespace Chat
     {
         public MainWindow()
         {
-            /*
-             <ListViewItem Padding="0">
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                        <Ellipse Cursor="Hand" Width="50" Height="50">
-                            <Ellipse.Fill>
-                                <ImageBrush  ImageSource="res/icon.png" />
-                            </Ellipse.Fill>
-                        </Ellipse>
-                        <StackPanel Orientation="Vertical" VerticalAlignment="Center" Margin="5 0">
-                            <TextBlock FontSize="15" Foreground="Black" Text="你没事吧" />
-                            <TextBlock  Margin="0 2 0 0" FontSize="12" Text="我说了个114514" />
-                        </StackPanel>
-                    </StackPanel>
-                </ListViewItem>
-             */
             InitializeComponent();
-            List<ListViewItem> d = new List<ListViewItem>()
+            List<FLI> FL = new()
             {
-                new ListViewItem(){
-                    Padding=new Thickness() { Bottom=0,Top=0, Right=0, Left=0},
-                    Content=new StackPanel(){
-                        Orientation=Orientation.Horizontal,
-                        HorizontalAlignment=HorizontalAlignment.Center,
-                        
-                    }
-                }
-            };
-            fl.ItemsSource = d;
-            fl.DisplayMemberPath = "Name";
-            Binding b = new Binding("SelectedItem.id") { Source = this.fl };
-            tb.SetBinding(TextBlock.TextProperty, b);
+                new FLI(114514, "大傻逼", 1),
+                new FLI(10086, "小傻逼", 2),
+                new FLI(10086, "小傻逼", 2),
+                new FLI(10086, "小傻逼", 2),
+                new FLI(10086, "小傻逼", 2),
+                new FLI(10086, "小傻逼", 2),
+                new FLI(10086, "小傻逼", 2),
+                new FLI(10086, "小傻逼", 2),
+                new FLI(10086, "小傻逼", 2),
+                new FLI(10086, "小傻逼", 2),new FLI(10086, "小傻逼", 2),
+                new FLI(10086, "小傻逼", 2),
+new FLI(10086, "小傻逼", 2),
+new FLI(10086, "小傻逼", 2),
+new FLI(10086, "小傻逼", 2),
+new FLI(10086, "小傻逼", 2),
+new FLI(10086, "小傻逼", 2),
+new FLI(10086, "小傻逼", 2),
+new FLI(10086, "小傻逼", 2),
+new FLI(10086, "小傻逼", 2),
+new FLI(10086, "小傻逼", 2),
+new FLI(10086, "小傻逼", 2),
+new FLI(10086, "小傻逼", 2),
+new FLI(10086, "小傻逼", 2),
+new FLI(10086, "小傻逼", 2),
+new FLI(10086, "小傻逼", 2),
+new FLI(10086, "小傻逼", 2),
+new FLI(10086, "小傻逼", 2),
+new FLI(10086, "小傻逼", 2),
+new FLI(10086, "小傻逼", 2),
+new FLI(10086, "小傻逼", 2),
+new FLI(10086, "小傻逼", 2),
+new FLI(10086, "小傻逼", 2),
+
+            };            
+            fl.ItemsSource = FL;
+
+            title.SetBinding(TextBlock.TextProperty, new Binding("SelectedItem.Name") { Source = fl });            
         }
 
         private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            fl.Height = bg.ActualHeight;
+            //fl.Height = bg.ActualHeight;
         }
 
-        private void fl_Selected(object sender, RoutedEventArgs e)
+        public class FLI       //Friend List Item
         {
-            MessageBox.Show(sender.ToString());
+            public int Id { get;}
+            public string Name { get; } = string.Empty;
+            public BitmapImage Head { get; }      //Head ID      
+            
+            public FLI(int id, string name, int head)
+            {                
+                Id = id;
+                Name = name;
+                BitmapImage map = new();
+                map.BeginInit();
+                map.UriSource = new Uri("res/" + head.ToString(), UriKind.Relative);
+                map.EndInit();
+                Head = map;
+            }
         }
 
-        public class User
-        {
-            public int id { get; set; }
-            public string Name { get; set; }
-        }
+        
     }
 }
