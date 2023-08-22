@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Chat.require;
 
 namespace Chat
 {
@@ -21,6 +22,8 @@ namespace Chat
     /// </summary>
     public partial class MainWindow : Window
     {
+        public static User User { get; set; }
+
         public MainWindow()
         {
             InitializeComponent();
@@ -62,7 +65,7 @@ new FLI(10086, "小傻逼", 2),
             };            
             fl.ItemsSource = FL;
 
-            title.SetBinding(TextBlock.TextProperty, new Binding("SelectedItem.Name") { Source = fl });            
+            title.SetBinding(TextBlock.TextProperty, new Binding("SelectedItem.Name") { Source = fl });
         }
 
         private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
@@ -70,24 +73,17 @@ new FLI(10086, "小傻逼", 2),
             //fl.Height = bg.ActualHeight;
         }
 
-        public class FLI       //Friend List Item
+        public class Message_DataTemplateSelector : DataTemplateSelector
         {
-            public int Id { get;}
-            public string Name { get; } = string.Empty;
-            public BitmapImage Head { get; }      //Head ID      
-            
-            public FLI(int id, string name, int head)
-            {                
-                Id = id;
-                Name = name;
-                BitmapImage map = new();
-                map.BeginInit();
-                map.UriSource = new Uri("res/" + head.ToString(), UriKind.Relative);
-                map.EndInit();
-                Head = map;
+            public string us { get; set; }
+
+            public override DataTemplate SelectTemplate(object item, DependencyObject container)
+            {
+                var u = container as FrameworkElement;
+                CM.ChatMessage message = (CM.ChatMessage)item;
+
+                if (message.Sender_Id == MainWindow.User.Id) { }
             }
         }
-
-        
     }
 }
