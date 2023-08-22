@@ -21,9 +21,7 @@ namespace Chat
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
-    {
-        public static User User { get; set; }
-
+    {      
         public MainWindow()
         {
             InitializeComponent();
@@ -72,18 +70,19 @@ new FLI(10086, "小傻逼", 2),
         {
             //fl.Height = bg.ActualHeight;
         }
+    }
 
-        public class Message_DataTemplateSelector : DataTemplateSelector
+    public class Message_DataTemplateSelector : DataTemplateSelector
+    {
+        public DataTemplate Send { get; set; }
+        public DataTemplate Recv { get; set; }
+
+        public override DataTemplate SelectTemplate(object item, DependencyObject container)
         {
-            public string us { get; set; }
+            CM.ChatMessage message = (CM.ChatMessage)item;
 
-            public override DataTemplate SelectTemplate(object item, DependencyObject container)
-            {
-                var u = container as FrameworkElement;
-                CM.ChatMessage message = (CM.ChatMessage)item;
-
-                if (message.Sender_Id == MainWindow.User.Id) { }
-            }
+            if (message.Sender_Id == Var.user.Id) { return Send; }
+            else { return Recv; }
         }
     }
 }

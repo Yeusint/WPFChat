@@ -28,8 +28,8 @@ namespace Chat
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow main = new();
-            main.User = new(123, "345", 1, new());            
+            Var.user = new(123, "345", 1, new());
+            MainWindow main = new();           
             main.Show();
             Close();
         }

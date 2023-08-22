@@ -4,7 +4,7 @@
              xmlns:local="clr-namespace:Chat"
              StartupUri="Login.xaml">
     <Application.Resources>
-        <DataTemplate x:Key="send">
+        <DataTemplate x:Key="Send">
             <ListViewItem Content="{Binding Message}">
                 <ListViewItem.Style>
                     <Style TargetType="ListViewItem">
@@ -67,7 +67,7 @@
 
             </ListViewItem>
         </DataTemplate>
-        <DataTemplate x:Key="recv">
+        <DataTemplate x:Key="Recv">
             <ListViewItem Content="{Binding Message}">
                 <ListViewItem.Style>
                     <Style TargetType="{x:Type ListViewItem}">
