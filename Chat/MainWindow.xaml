@@ -46,12 +46,12 @@
 
         </Grid>
         <Grid Margin="160,40,0,0">
-            <ListView x:Name="Message" HorizontalAlignment="Center" Height="355" VerticalAlignment="Top" Width="640" Background="#FFEEEEEE">
+            <ListView x:Name="Message" Background="#FFEEEEEE" Height="445">
                 <!--<ListView.ItemTemplateSelector>
                        <local:Message_DataTemplateSelector Send="{StaticResource ResourceKey=Send}" Recv="{StaticResource ResourceKey=Recv}" />
                 </ListView.ItemTemplateSelector>-->
             </ListView>
-            <TextBox TextWrapping="Wrap" Text="" Margin="0,355,0,0"/>
+            <TextBox TextWrapping="Wrap" Text="" BorderBrush="{x:Null}" Margin="0,350,0,0"/>
         </Grid>
 
 
