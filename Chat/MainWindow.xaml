@@ -45,13 +45,19 @@
             </ListView>
 
         </Grid>
-        <Grid Margin="160,40,0,0">
-            <ListView x:Name="Message" Background="#FFEEEEEE" Height="445">
-                <!--<ListView.ItemTemplateSelector>
-                       <local:Message_DataTemplateSelector Send="{StaticResource ResourceKey=Send}" Recv="{StaticResource ResourceKey=Recv}" />
-                </ListView.ItemTemplateSelector>-->
-            </ListView>
-            <TextBox TextWrapping="Wrap" Text="" BorderBrush="{x:Null}" Margin="0,350,0,0"/>
+        <Grid x:Name="msg" Margin="160,40,0,0">
+            <ListView x:Name="Message" Background="#FFEEEEEE" ItemTemplateSelector="{StaticResource Message_Selector}" ScrollViewer.VerticalScrollBarVisibility="Disabled" />
+            <TextBox x:Name="mi" TextWrapping="Wrap" Text="" BorderBrush="{x:Null}" Height="100" VerticalAlignment="Bottom">
+                <TextBox.Resources>
+                    <RoutedUICommand x:Key="Send" Text="发送" />
+                </TextBox.Resources>
+                <TextBox.InputBindings>
+                    <KeyBinding Gesture="Enter" Command="{StaticResource Send}" />
+                </TextBox.InputBindings>
+                <TextBox.CommandBindings>
+                    <CommandBinding Command="{StaticResource Send}" Executed="SM" />
+                </TextBox.CommandBindings>
+            </TextBox>
         </Grid>
 
 

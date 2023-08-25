@@ -28,7 +28,7 @@ namespace Chat
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Var.user = new(123, "345", 1, new());
+            Var.user = new(123, "345", 3, new());
             MainWindow main = new();           
             main.Show();
             Close();

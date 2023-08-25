@@ -20,7 +20,7 @@ namespace Chat.require
             Name = name;
             BitmapImage map = new();
             map.BeginInit();
-            map.UriSource = new Uri("res/" + head.ToString(), UriKind.Relative);
+            map.UriSource = new Uri("res/user/head/" + head.ToString(), UriKind.Relative);
             map.EndInit();
             Head = map;
         }
@@ -31,6 +31,7 @@ namespace Chat.require
         public int Id { get; set; }
         public string Name { get; set; }
         public BitmapImage Head { get; set; }
+        public int Head_id { get; set; }
         public List<FLI> Friends { get; set; }
         
         public User(int id, string name, int head, List<FLI> friends)
@@ -39,8 +40,9 @@ namespace Chat.require
             Name = name;
             BitmapImage map = new();
             map.BeginInit();
-            map.UriSource = new Uri("res/user/head" + head.ToString(), UriKind.Relative);
+            map.UriSource = new Uri("res/user/head/" + head.ToString(), UriKind.Relative);
             map.EndInit();
+            Head_id = head;
             Head = map;
             Friends = friends;
         }
@@ -68,6 +70,7 @@ namespace Chat.require
         public long Time { get; }
         public int User_Id { get; }
         public BitmapImage Head { get; }
+        public int Head_id { get; }
         public string Message { get; }
         public bool IsSend { get; }
         public CMI(long time, int Id, string message, int head, bool isSend)
@@ -75,8 +78,9 @@ namespace Chat.require
             Time = time;
             BitmapImage map = new();
             map.BeginInit();
-            map.UriSource = new Uri("res/user/head" + head.ToString(), UriKind.Relative);
+            map.UriSource = new Uri("res/user/head/" + head.ToString(), UriKind.Relative);
             map.EndInit();
+            Head_id = head;
             Head = map;
             Message = message;
             IsSend = isSend;

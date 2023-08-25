@@ -68,21 +68,31 @@ new FLI(10086, "小傻逼", 2),
 
         private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            //fl.Height = bg.ActualHeight;
+            Message.Height = msg.ActualHeight - mi.ActualHeight;
+        }
+
+        public void SM(object sender, ExecutedRoutedEventArgs e)
+        {
+            TextBox box = (TextBox)sender;
+            
+            List<CMI> Cms = new();
+            foreach (CMI i in Message.Items){Cms.Add(i);}
+            Cms.Add(new CMI(DateTimeOffset.Now.ToUnixTimeSeconds(), Var.user.Id, box.Text,Var.user.Head_id, true));
+            Message.ItemsSource = Cms;
+
         }
     }
 
     public class Message_DataTemplateSelector : DataTemplateSelector
-    {
-        public DataTemplate Send { get; set; }
-        public DataTemplate Recv { get; set; }
+    {        
 
         public override DataTemplate SelectTemplate(object item, DependencyObject container)
         {
-            CM.ChatMessage message = (CM.ChatMessage)item;
+            CMI message = (CMI)item;
+            FrameworkElement Fe = (FrameworkElement)container;
 
-            if (message.Sender_Id == Var.user.Id) { return Send; }
-            else { return Recv; }
+            if (message.IsSend) { return (DataTemplate)Fe.FindResource("Send"); }
+            else { return (DataTemplate)Fe.FindResource("Recv"); }
         }
     }
 }

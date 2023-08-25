@@ -4,8 +4,9 @@
              xmlns:local="clr-namespace:Chat"
              StartupUri="Login.xaml">
     <Application.Resources>
+        <local:Message_DataTemplateSelector x:Key="Message_Selector" />
         <DataTemplate x:Key="Send">
-            <ListViewItem Content="{Binding Message}">
+            <ListViewItem Content="{Binding Message}" HorizontalAlignment="Right">
                 <ListViewItem.Style>
                     <Style TargetType="ListViewItem">
                         <Setter Property="Template">
@@ -68,7 +69,7 @@
             </ListViewItem>
         </DataTemplate>
         <DataTemplate x:Key="Recv">
-            <ListViewItem Content="{Binding Message}">
+            <ListViewItem Content="{Binding Message}" HorizontalAlignment="Left">
                 <ListViewItem.Style>
                     <Style TargetType="{x:Type ListViewItem}">
                         <Setter Property="Template">
