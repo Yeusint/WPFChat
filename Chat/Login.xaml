@@ -3,11 +3,30 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Chat"
         mc:Ignorable="d"
-        Title="Login" Height="450" Width="800">
+        Title="Login" Height="325" Width="455" MinWidth="310" MinHeight="315" WindowStartupLocation="CenterScreen">
     <Grid>
-        <Button Content="Button" HorizontalAlignment="Left" Height="47" Margin="297,348,0,0" VerticalAlignment="Top" Width="147" Click="Button_Click"/>
+        <Label Content="垃圾聊天室" HorizontalAlignment="Center" Height="60" Margin="0,10,0,0" Width="246" VerticalAlignment="Top" AutomationProperties.HelpText="" FontSize="36" HorizontalContentAlignment="Center" FontFamily="Arial"/>
+        <StackPanel HorizontalAlignment="Center" Height="50" Margin="0,75,0,0" VerticalAlignment="Top" Width="285">
+            <Label Content="Id:" Height="16" Width="35" HorizontalAlignment="Left" FontSize="10" Padding="0,0,0,0" VerticalContentAlignment="Center" FontFamily="Comic Sans MS"/>
+            <TextBox x:Name="Id" Height="18" TextWrapping="Wrap" MaxLength="20"/>
+            <Label x:Name="Id_tip" FontSize="10" Padding="0,0,0,0" ScrollViewer.CanContentScroll="True" VerticalContentAlignment="Center" Foreground="Red" Height="16"/>
+        </StackPanel>
+        <Button x:Name="login" Content="登录" HorizontalAlignment="Center" Height="31" VerticalAlignment="Top" Width="221" Margin="0,222,0,0" BorderBrush="{x:Null}" Foreground="Black" BorderThickness="1,1,1,1" RenderTransformOrigin="0.5,0.5" Click="Login_button">
+            <Button.Background>
+                <RadialGradientBrush>
+                    <GradientStop Color="#FF7DCCE8" Offset="0.073"/>
+                    <GradientStop Color="#FF3EC2F1" Offset="0.479"/>
+                    <GradientStop Color="#FF0BBCFB" Offset="0.661"/>
+                </RadialGradientBrush>
+            </Button.Background>
+        </Button>
+        <StackPanel HorizontalAlignment="Center" Height="50" Margin="0,143,0,0" VerticalAlignment="Top" Width="285">
+            <Label Content="密码:" Height="16" Width="35" HorizontalAlignment="Left" FontSize="10" Padding="0,0,0,0" VerticalContentAlignment="Center" FontFamily="Comic Sans MS"/>
+            <PasswordBox x:Name="pw" Height="18" InputScope="Password" VerticalContentAlignment="Center" PasswordChar=" " MaxLength="20" AutomationProperties.HelpText="我们家的密码框输入字符是空白的哟~"/>
+            <Label x:Name="pw_tip" FontSize="10" Padding="0,0,0,0" ScrollViewer.CanContentScroll="True" VerticalContentAlignment="Center" Foreground="Red" Height="16"/>
+        </StackPanel>
+        <Button Content="注册账号" HorizontalAlignment="Left" Height="24" VerticalAlignment="Bottom" Width="62" Padding="0,0,1,0" Background="{x:Null}" BorderBrush="{x:Null}" FontFamily="Bahnschrift" FontSize="14" Click="Register_button"/>
 
     </Grid>
 </Window>

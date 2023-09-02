@@ -3,8 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Chat"
-        xmlns:Collections="clr-namespace:System.Collections;assembly=System.Runtime" x:Class="Chat.MainWindow"
+        x:Class="Chat.MainWindow"
         mc:Ignorable="d"
         Title="Chat Room" Height="500" Width="800" MinWidth="680" MinHeight="350" Icon="/icon.png">
     <Grid RenderTransformOrigin="0.5,0.5">
@@ -46,16 +45,81 @@
 
         </Grid>
         <Grid x:Name="msg" Margin="160,40,0,0">
-            <ListView x:Name="Message" Background="#FFEEEEEE" ItemTemplateSelector="{StaticResource Message_Selector}" ScrollViewer.VerticalScrollBarVisibility="Disabled" />
+            <ListView x:Name="Message" Background="#FFFDC2C2" ItemTemplateSelector="{StaticResource Message_Selector}" ScrollViewer.VerticalScrollBarVisibility="Disabled" Margin="0,0,0,100">
+                <ListViewItem Content="114514" HorizontalAlignment="Right">
+                    <ListViewItem.Style>
+                        <Style TargetType="ListViewItem">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="{x:Type ListViewItem}">
+                                        <Grid Margin="0,5,0,5">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="40" />
+                                            </Grid.ColumnDefinitions>
+                                            <Image Grid.Column="1" 
+                           Width="35" Height="35" 
+                           Source="res/2"/>
+
+                                            <Border x:Name="border1" 
+                            CornerRadius="1"
+                            BorderBrush="#9EEA6A"
+                            BorderThickness="1" 
+                            VerticalAlignment="Top"
+                            HorizontalAlignment="Right"
+                            Margin="0,2,10,2" 
+                            Background="#9EEA6A" 
+                            Padding="5" 
+                            MinHeight="35" 
+                            MinWidth="50">
+                                                <ContentPresenter VerticalAlignment="Center" />
+                                            </Border>
+                                            <Canvas Width="10" 
+                            Height="16" 
+                            HorizontalAlignment="Right" 
+                            VerticalAlignment="Top"
+                            Margin="5,14,0,0" 
+                            Background="Transparent">
+                                                <Path x:Name="path1" 
+                              Stroke="#9EEA6A" 
+                              StrokeThickness="0.5"
+                              Fill="#9EEA6A">
+                                                    <Path.Data>
+                                                        <PathGeometry Figures="M 0,12 L 0,0,8,6"/>
+                                                    </Path.Data>
+                                                </Path>
+                                            </Canvas>
+                                        </Grid>
+                                        <ControlTemplate.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter TargetName="path1" 
+                                Property="Fill" 
+                                Value="#98E165" />
+                                                <Setter TargetName="border1"
+                                Property="Background" 
+                                Value="#98E165" />
+                                            </Trigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </ListViewItem.Style>
+
+                </ListViewItem>
+            </ListView>
             <TextBox x:Name="mi" TextWrapping="Wrap" Text="" BorderBrush="{x:Null}" Height="100" VerticalAlignment="Bottom">
                 <TextBox.Resources>
                     <RoutedUICommand x:Key="Send" Text="发送" />
+                    <RoutedUICommand x:Key="Next_line" Text="换行" />
                 </TextBox.Resources>
                 <TextBox.InputBindings>
                     <KeyBinding Gesture="Enter" Command="{StaticResource Send}" />
+                    <KeyBinding Gesture="Ctrl+Enter" Command="{StaticResource Next_line}" />
                 </TextBox.InputBindings>
                 <TextBox.CommandBindings>
                     <CommandBinding Command="{StaticResource Send}" Executed="SM" />
+                    <CommandBinding Command="{StaticResource Next_line}" Executed="SM_n" />
                 </TextBox.CommandBindings>
             </TextBox>
         </Grid>

@@ -1,18 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography.X509Certificates;
+using System.Net;
+using System.Net.Sockets;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using Chat.require;
 
 namespace Chat
 {
@@ -23,15 +13,39 @@ namespace Chat
     {        
         public Login()
         {
-            InitializeComponent();            
+            InitializeComponent(); 
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Login_button(object sender, RoutedEventArgs e)
         {
-            Var.user = new(123, "345", 3, new());
-            MainWindow main = new();           
-            main.Show();
-            Close();
+            if (string.IsNullOrWhiteSpace(Id.Text) || string.IsNullOrWhiteSpace(pw.Password))
+            {
+                if (string.IsNullOrWhiteSpace(Id.Text)) { Id_tip.Content = "请输入Id."; } else { Id_tip.Content = ""; }
+                if (string.IsNullOrWhiteSpace(pw.Password)) { pw_tip.Content = "请输入密码!!!"; } else { pw_tip.Content = ""; }
+                return;
+            }
+            Id_tip.Content = ""; pw_tip.Content = "";
+            login.IsEnabled = false;
+            Socket socket = new(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+            try { socket.Connect(new IPEndPoint(IPAddress.Parse("127.0.0.1"), 999)); }
+            catch (SocketException v)
+            {
+                MessageBox.Show($"服务器连接失败-_-\n错误码:{v.NativeErrorCode}", "真不巧", MessageBoxButton.OK, MessageBoxImage.Error);
+                login.IsEnabled = true;
+                return;
+            }
+            socket.Send(Encoding.UTF8.GetBytes($"Type:Login|Id:{Id.Text}|Password:{pw.Password}"));
+            byte[] data = new byte[1024];
+            int length = socket.Receive(data);
+            string result = Encoding.UTF8.GetString(data, 0, length);
+
+            socket.Close();
+            login.IsEnabled=true;
+        }
+
+        private void Register_button(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("看什么看,不给你注册-v-", "无注册渠道", MessageBoxButton.OK, MessageBoxImage.Stop);
         }
     }
 }
